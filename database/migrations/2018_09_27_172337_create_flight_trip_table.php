@@ -19,6 +19,8 @@ class CreateFlightTripTable extends Migration
 			
 			$table->unsignedInteger('trip_id');
 			$table->foreign('trip_id')->on('trips')->references('id');
+			
+			$table->primary(['flight_id', 'trip_id']);
         });
     }
 

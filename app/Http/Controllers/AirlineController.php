@@ -7,14 +7,24 @@ use Illuminate\Http\Request;
 
 class AirlineController extends Controller
 {
+	
+	/**
+     * Controller constructor
+     */
+	public function __construct() {
+		// Protect everything but list and get
+		$this->middleware('auth:api')->except([
+			'index', 'show'
+		]);
+	}
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index(Request $request) {
+		// TODO: filtering and pagination
+        return Airline::all();
     }
 
     /**

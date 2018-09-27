@@ -10,4 +10,8 @@ class Trip extends Model {
 		return $this->belongsToMany(Flight::class);
 	}
 	
+	public function getPriceAttribute() {
+		return $this->flights->sum('price');
+	}
+	
 }

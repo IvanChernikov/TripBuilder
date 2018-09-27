@@ -24,8 +24,8 @@ class CreateFlightsTable extends Migration
 			$table->unsignedInteger('arrival_airport_id');
 			$table->foreign('arrival_airport_id')->on('airports')->references('id');
 			
-			$table->timestamp('departs_at');
-			$table->timestamp('arrives_at');
+			$table->timestampTz('departs_at');
+			$table->timestampTz('arrives_at');
 			
 			$table->string('number');
 			

@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class TripController extends Controller
 {
+	/**
+     * Controller constructor
+     */
+	public function __construct() {
+		// Protect create and edit
+		$this->middleware('auth:api')->only(['create', 'edit']);
+	}
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +21,7 @@ class TripController extends Controller
      */
     public function index()
     {
-        //
+        return Trip::all();
     }
 
     /**
@@ -35,7 +42,10 @@ class TripController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $trip = new Trip();
+		if ($request->flights) {
+			
+		}
     }
 
     /**
