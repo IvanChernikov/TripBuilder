@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 class Airport extends Model {
-    protected $timestamps = false;
+    public $timestamps = false;
 	
 	public function arrivingFlights() {
 		return $this->hasMany(Flight::class, 'arrival_airport_id');

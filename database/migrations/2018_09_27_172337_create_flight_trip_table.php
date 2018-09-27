@@ -15,10 +15,10 @@ class CreateFlightTripTable extends Migration
     {
         Schema::create('flight_trip', function (Blueprint $table) {
 			$table->unsignedInteger('flight_id');
-			$table->foreign('flight_id')->on('flights')->refences('id');
+			$table->foreign('flight_id')->on('flights')->references('id');
 			
 			$table->unsignedInteger('trip_id');
-			$table->foreign('trip_id')->on('trips')->refences('id');
+			$table->foreign('trip_id')->on('trips')->references('id');
         });
     }
 

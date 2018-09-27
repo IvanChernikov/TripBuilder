@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Seeder;
 
+use Illuminate\Support\Facades\DB;
+
 class AirlineSeeder extends Seeder
 {
     /**
@@ -9,8 +11,11 @@ class AirlineSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
-    {
-        //
+    public function run() {
+        // From test data
+		DB::table('airlines')->insert([
+			'code' => 'AC',
+			'name' => 'Air Canada',
+		]);
     }
 }
