@@ -35,5 +35,9 @@ class AirportSeeder extends Seeder
 			'longitude' => -123.179192,
 			'timezone' => 'America/Vancouver',
 		]);
+		
+		
+		// From Factory
+		factory(App\Airport::class, 20)->create();
     }
 }

@@ -5,7 +5,10 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 class Flight extends Model {
-    public $timestamps = ['arrives_at', 'departs_at'];
+    public $timestamps = false;
+	public function getDates() {
+		return ['arrives_at', 'departs_at'];
+	}
 	
 	public function airline() {
 		return $this->belongsTo(Airline::class);

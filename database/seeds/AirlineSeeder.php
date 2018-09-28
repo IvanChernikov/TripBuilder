@@ -17,5 +17,8 @@ class AirlineSeeder extends Seeder
 			'code' => 'AC',
 			'name' => 'Air Canada',
 		]);
+		
+		// From Factory
+		factory(App\Airline::class, 10)->create();
     }
 }

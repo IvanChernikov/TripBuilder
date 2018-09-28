@@ -26,22 +26,25 @@ class FlightController extends Controller
      */
     public function index(Request $request)
     {
-		$flights = Flight::with('arrivalAirport')
+		$flights = Flight::where('departs_at', '>=', today())
+			->where('departs_at', '<', today()->addDays(365))
+			->with('arrivalAirport')
 			->with('departureAirport')
 			->with('airline');
-			
+		// Airport filters	
 		if ($request->from) {
 			$flights->fromAirport($request->from);
 		}
 		if ($request->to) {
 			$flights->toAirport($request->to);
 		}
+		// Date filters
 		if ($request->date) {
 			$date = Carbon::parse($request->date);
 			$flights->where('departs_at', '>', $date);
 		}
-        // TODO: Filtering and pagination
-		return $flights->get();
+        
+		return $flights->paginate(10)->appends($request->except('page'));
     }
 
     /**

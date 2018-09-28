@@ -37,5 +37,9 @@ class FlightSeeder extends Seeder
 			'arrives_at' => Carbon::parse('december 5th 7:11pm', $montreal->timezone),
 			'price' => 220.63
 		]);
+		
+		
+		// From Factory
+		factory(App\Flight::class, 200)->create();
     }
 }
