@@ -2,7 +2,7 @@
 
 @section ('content')
 <div class="container">
-	<form action="#" method="GET">
+	<form action="#" method="GET" onsubmit="$(this).parent().next().addClass('show'); return false">
 		<div class="form-row">
 			<div class="form-group col-md-4">
 				<label for="from">Departure</label>
@@ -26,12 +26,19 @@
 </div>
 
 <div class="container fade">
-	<div class="col-8">
-	
-	</div>
-	
-	<div class="col-4">
-
+	<div class="row">
+		<div class="col-8">
+			<h2>Available Flights</h2>
+			<ul class="list-group">
+			</ul>
+		</div>
+		
+		<div class="col-4">
+			<h2>My Trip</h2>
+			<ul class="list-group">
+			
+			</ul>
+		</div>
 	</div>
 </div>
 @stop
