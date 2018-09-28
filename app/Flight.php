@@ -6,9 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Flight extends Model {
     public $timestamps = false;
-	public function getDates() {
-		return ['arrives_at', 'departs_at'];
-	}
+	protected $dates = ['arrives_at', 'departs_at'];
 	
 	public function airline() {
 		return $this->belongsTo(Airline::class);
@@ -28,7 +26,7 @@ class Flight extends Model {
 	
 	// Scopes
 	/**
-     * Scope a query to only include active users.
+     * Filters flights by departure airport
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
 	 * @param mixed $airport ID or Code
@@ -38,6 +36,13 @@ class Flight extends Model {
 		$airport = Airport::whereCodeOrId($airport)->first();
 		return $query->where('departure_airport_id', optional($airport)->id);
 	}
+	/**
+     * Filters flights by arrival airport
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+	 * @param mixed $airport ID or Code
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
 	public function scopeToAirport($query, $airport) {
 		$airport = Airport::whereCodeOrId($airport)->first();
 		return $query->where('arrival_airport_id', optional($airport)->id);
