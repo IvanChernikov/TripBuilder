@@ -1,8 +1,12 @@
 @extends ('layouts.app')
 
+@push ('scripts')
+<script src="{{ asset('js/builder.js') }}" defer></script>
+@endpush
+
 @section ('content')
 <div class="container">
-	<form action="#" method="GET" onsubmit="$(this).parent().next().addClass('show'); return false">
+	<form action="#" method="GET" onsubmit="event.preventDefault(); builder.getFlights(this, 1);">
 		<div class="form-row">
 			<div class="form-group col-md-4">
 				<label for="from">Departure</label>
@@ -25,17 +29,17 @@
 	</form>
 </div>
 
-<div class="container fade">
+<div class="container fade" id="builder">
 	<div class="row">
-		<div class="col-8">
+		<div class="col-6">
 			<h2>Available Flights</h2>
-			<ul class="list-group">
+			<ul class="list-group" id="results">
 			</ul>
 		</div>
 		
-		<div class="col-4">
+		<div class="col-6">
 			<h2>My Trip</h2>
-			<ul class="list-group">
+			<ul class="list-group" id="flights">
 			
 			</ul>
 		</div>
