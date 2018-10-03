@@ -4,6 +4,15 @@
 <script src="{{ asset('js/builder.js') }}" defer></script>
 @endpush
 
+@push ('styles')
+<style>
+#results .item-flight .btn-danger,
+#flights .item-flight .btn-success { {
+	display: none;
+}
+</style>
+@endpush
+
 @section ('content')
 <div class="container">
 	<form action="#" method="GET" onsubmit="event.preventDefault(); builder.getFlights(this, 1);">
@@ -40,7 +49,11 @@
 		<div class="col-6">
 			<h2>My Trip</h2>
 			<ul class="list-group" id="flights">
-			
+				<li class="list-group-item">
+					<p>Total: <b id="total">$ 0.00</b></p>
+					<button type="button" class="btn btn-primary btn-block"
+						onclick="builder.createTrip()">Book Trip</button>
+				</li>
 			</ul>
 		</div>
 	</div>

@@ -42,10 +42,14 @@ class TripController extends Controller
      */
     public function store(Request $request)
     {
-        $trip = new Trip();
 		if ($request->flights) {
-			
+			$trip = Trip::create();
+			foreach ($request->flights as $id) {
+				$trip->flights()->attach($id);
+			}
+			return $trip->load('flights');
 		}
+		abort(400);
     }
 
     /**

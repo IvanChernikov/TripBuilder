@@ -9,7 +9,7 @@ $factory->define(App\Flight::class, function (Faker $faker) {
 	
 	$airline = Airline::find($faker->numberBetween(1, Airline::count()));
 	$departs_from = Airport::find($faker->numberBetween(1, Airport::count()));
-	$departs_at = $faker->dateTime(today()->addDays(365), $departs_from->timezone);
+	$departs_at = $faker->dateTimeBetween(today(), today()->addDays(365), $departs_from->timezone);
 	$arrives_to = Airport::find($faker->numberBetween(1, Airport::count()));
 	$max_arrives_at = clone $departs_at;
 	$max_arrives_at->modify('+6 hours');
