@@ -47,7 +47,8 @@ class TripController extends Controller
 			foreach ($request->flights as $id) {
 				$trip->flights()->attach($id);
 			}
-			return $trip->load('flights');
+			return $trip->load('flights', 'flights.arrivalAirport',
+				'flights.departureAirport', 'flights.airline');
 		}
 		abort(400);
     }

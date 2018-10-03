@@ -18,6 +18,13 @@ let builder = {
 				.done(function (response) {
 					let flights = response.data;
 					$('#results').children().remove();
+					if (response.total == 0) {
+						$('<li>')
+							.addClass('list-group-item list-group-item-warning')
+							.text('No flights found')
+							.appendTo('#results');
+						return;
+					}
 					for (let i in flights) {
 						let flight = flights[i],
 							title = `${flight.departure_airport.code} - ${flight.arrival_airport.code}`,
@@ -25,6 +32,7 @@ let builder = {
 								.addClass('list-group-item list-group-item-action item-flight')
 								.data('flight', flight)
 								.append( $('<h3>').text(title) )
+								.append( $('<p>').text(`Airline: ${flight.airline.name}`) )
 								.append( $('<p>').text(flight.departs_at) )
 								.append( $('<p>').html(`<b>$ ${flight.price}</b>`) )
 								.appendTo('#results');
@@ -45,6 +53,7 @@ let builder = {
 									})
 								.appendTo(li);
 					}
+					
 					
 					if (response.last_page > 1) {
 						let container = $('<li>')
@@ -72,6 +81,12 @@ let builder = {
 								}
 						}
 					}
+				})
+				.fail( function () {
+					let li = $('<li>')
+						.addClass('list-group-item list-group-item-danger')
+						.text('An error has occured')
+						.appendTo('#results');
 				});
 		
 	},
@@ -116,7 +131,24 @@ let builder = {
 		
 		$.post('/api/trips', data)
 			.done(function (response) {
-				console.log(response);
+				$('#trip-flights').children().remove();
+				
+				for (let i in response.flights) {
+					let flight = response.flights[i],
+						title = `${flight.departure_airport.code} - ${flight.arrival_airport.code}`,
+						subtitle = `${flight.departure_airport.city} - ${flight.arrival_airport.city}`,
+						li = $('<li>')
+							.addClass('list-group-item')
+							.append( $('<h3>').text(title) )
+							.append( $('<h4>').text(subtitle) )
+							.append( $('<p>').text(`Airline: ${flight.airline.name}`) )
+							.append( $('<p>').text(flight.departs_at) )
+							.append( $('<p>').html(`<b>$ ${flight.price}</b>`) )
+							.appendTo('#trip-flights');
+				}
+				$('#trip-total').text(`$ ${response.price}`);
+				
+				$('#trip-modal').modal('show');
 			});
 	}
 }
