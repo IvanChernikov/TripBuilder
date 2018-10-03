@@ -4,12 +4,16 @@
 - MySQL server or another Laravel compatible database
 - PHP 7.1+
 - Composer
+- NPM
+- Apache or nginx
 
 # Installation
 - Clone repository to your web root folder
 - Run `composer isntall`
 - Run `npm run production`
-- Create a new database schema, default name is 'airtrip'
+- Create a new database schema, default name is `airtrip`
+- Run `cp .env.example .env`
+- Run `php artisan key:generate`
 - Run `php artisan migrate --seed`
 
 # Usage
