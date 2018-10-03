@@ -14,7 +14,8 @@
 - Create a new database schema, default name is `airtrip`
 - Run `cp .env.example .env`
 - Run `php artisan key:generate`
-- Run `php artisan migrate --seed`
+- Change `/.env` configuration for your database access
+- Run `php artisan migrate:fresh --seed`
 - Make sure that `public` and `storage` folders are writable to by the web server user
     - for ubuntu and apache stack run `chown www-data public -R` and `chown www-data storage -R`
 
