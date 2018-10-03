@@ -15,6 +15,8 @@
 - Run `cp .env.example .env`
 - Run `php artisan key:generate`
 - Run `php artisan migrate --seed`
+- Make sure that `public` and `storage` folders are writable to by the web server user
+    - for ubuntu and apache stack run `chown www-data public -R` and `chown www-data storage -R`
 
 # Usage
 - API routes:
