@@ -25,7 +25,7 @@
 	- GET /api/airports -- lists airports
 	- GET /api/flights -- lists flights, can be filtered by departure and arrival airports, and a minimum date
 	- POST /api/trips -- creates a new trip. requires `flights`: an array of flight ids
-	- GET /api/trips/{id} -- retrieves a flight by it's `id`
+	- GET /api/trips/{id} -- retrieves a trip by it's `id`
 	
 - Front-end Component:
 	- Search flight by arrival and departure airports, and by date
