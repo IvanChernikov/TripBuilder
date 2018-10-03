@@ -61,7 +61,8 @@ class TripController extends Controller
      */
     public function show(Trip $trip)
     {
-        //
+        return $trip->load('flights', 'flights.arrivalAirport',
+			'flights.departureAirport', 'flights.airline');
     }
 
     /**
